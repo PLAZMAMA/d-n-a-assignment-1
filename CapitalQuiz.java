@@ -81,7 +81,7 @@ class CapitalQuiz {
         Scanner input = new Scanner(System.in);
         String [][] sortedStateCapitals = bubbleSort(STATE_CAPITALS, 1);
 
-        for (String[] stateCapital : STATE_CAPITALS) {
+        for (String[] stateCapital : sortedStateCapitals) {
             formattedQuestion = String.format("What is the capital of %s?", stateCapital[0]);
             System.out.println(formattedQuestion);
             answer = input.nextLine();
