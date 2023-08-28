@@ -64,22 +64,29 @@ class CapitalQuiz {
      */
     public static String[][] bubbleSort(String[][] arr, int keyIndx) {
         // Declaring state capital pairs (inner array) that are used for temporary reference.
+        // Initializing variable that signifies if a swap happened during the iteration
         // Made with the goal of improving readability and allow swapping data.
         String[] currentStateCap;
         String[] nextStateCap;
         boolean swapped = true;
 
-        // Looping over each state capital pair.
+        // Looping until a full iteration has gone with no swaps.
         while (swapped) {
+            // Resetting swapped status.
             swapped = false;
 
+            // Iterating over the array.
             for (int currentIndx = 0; currentIndx < arr.length - 1; currentIndx++) {
                 currentStateCap = arr[currentIndx];
                 nextStateCap = arr[currentIndx + 1];
 
+                // Swapping if next element is alphabetically smaller.
                 if (currentStateCap[keyIndx].compareTo(nextStateCap[keyIndx]) > 0) {
+                    // swapping both elements.
                     arr[currentIndx] = nextStateCap;
                     arr[currentIndx + 1] = currentStateCap;
+
+                    // Turning on swap indication.
                     swapped = true;
                 }
             }
@@ -89,24 +96,31 @@ class CapitalQuiz {
     }
 
     public static void main(String[] args) {
+        // Declaring and initializing variables.
         String formattedQuestion;
         String answer;
         int correctAnswers = 0;
         Scanner input = new Scanner(System.in);
         String [][] sortedStateCapitals = bubbleSort(STATE_CAPITALS, 1);
-        System.out.println(Arrays.deepToString(sortedStateCapitals));
 
+        // Looping over each state capital pairs in sorted state capitals array.
         for (String[] stateCapital : sortedStateCapitals) {
+            // Formatting and printing input prompt
             formattedQuestion = String.format("What is the capital of %s?", stateCapital[0]);
             System.out.println(formattedQuestion);
+
+            // Reading user input.
             answer = input.nextLine();
+            // Checking if answer is correct and counting it.
             if (answer.equalsIgnoreCase(stateCapital[1])) {
                 correctAnswers += 1;
             }
         }
 
+        // Printing user's quiz results.
         System.out.println("Toal correct answers: " + correctAnswers);
 
+        // Closing input.
         input.close();
     }
 }
