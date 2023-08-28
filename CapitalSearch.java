@@ -75,7 +75,6 @@ public class CapitalSearch {
     public static void main(String[] args) {
         String tryAgainResponse;
         String stateResponse;
-        String capitilizedStateResponse;
         String formattedResult;
         boolean finished = false;
         HashMap<String, String> stateCapitals = createStateCapitals();
