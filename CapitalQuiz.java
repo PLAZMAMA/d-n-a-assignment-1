@@ -2,6 +2,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 class CapitalQuiz {
+    // 2D Array of the states and their capital. 
     static final String[][] STATE_CAPITALS = {
         {"Alabama", "Montgomery"},
         {"Alaska", "Juneau"},
@@ -55,18 +56,31 @@ class CapitalQuiz {
         {"Wyoming", "Cheyenne"}
     };
 
+    /**
+     * Sorts a 2D array of strings by a given key index.
+     * @param arr 2D array of strings to sort.
+     * @param keyIndx Index of the inner array to use for sorting.
+     * @return Sorted 2D string array.
+     */
     public static String[][] bubbleSort(String[][] arr, int keyIndx) {
+        // Declaring state capital pairs (inner array) that are used for temporary reference.
+        // Made with the goal of improving readability and allow swapping data.
         String[] currentStateCap;
-        String[] laterStateCap;
+        String[] nextStateCap;
+        boolean swapped = true;
 
-        for (int currentIndx = 0; currentIndx < arr.length - 1; currentIndx++) {
-            for (int laterIndx = currentIndx + 1; laterIndx < arr.length; laterIndx ++) {
+        // Looping over each state capital pair.
+        while (swapped) {
+            swapped = false;
+
+            for (int currentIndx = 0; currentIndx < arr.length - 1; currentIndx++) {
                 currentStateCap = arr[currentIndx];
-                laterStateCap = arr[laterIndx];
+                nextStateCap = arr[currentIndx + 1];
 
-                if (currentStateCap[keyIndx].compareTo(laterStateCap[keyIndx]) > 0) {
-                    arr[laterIndx] = currentStateCap;
-                    arr[currentIndx] = laterStateCap;
+                if (currentStateCap[keyIndx].compareTo(nextStateCap[keyIndx]) > 0) {
+                    arr[currentIndx] = nextStateCap;
+                    arr[currentIndx + 1] = currentStateCap;
+                    swapped = true;
                 }
             }
         }
@@ -80,6 +94,7 @@ class CapitalQuiz {
         int correctAnswers = 0;
         Scanner input = new Scanner(System.in);
         String [][] sortedStateCapitals = bubbleSort(STATE_CAPITALS, 1);
+        System.out.println(Arrays.deepToString(sortedStateCapitals));
 
         for (String[] stateCapital : sortedStateCapitals) {
             formattedQuestion = String.format("What is the capital of %s?", stateCapital[0]);
