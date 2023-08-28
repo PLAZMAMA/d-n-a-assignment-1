@@ -55,17 +55,17 @@ class CapitalQuiz {
     };
 
     public static String[][] bubbleSort(String[][] arr, int keyIndx) {
-        String currentStr;
-        String laterStr;
+        String[] currentStateCap;
+        String[] laterStateCap;
 
         for (int currentIndx = 0; currentIndx < arr.length - 1; currentIndx++) {
             for (int laterIndx = currentIndx + 1; laterIndx < arr.length; laterIndx ++) {
-                currentStr = arr[currentIndx][keyIndx];
-                laterStr = arr[laterIndx][keyIndx];
+                currentStateCap = arr[currentIndx];
+                laterStateCap = arr[laterIndx];
 
-                if (currentStr.compareTo(laterStr) > 0) {
-                    arr[laterIndx][keyIndx] = currentStr;
-                    arr[currentIndx][keyIndx] = laterStr;
+                if (currentStateCap[keyIndx].compareTo(laterStateCap[keyIndx]) > 0) {
+                    arr[laterIndx] = currentStateCap;
+                    arr[currentIndx] = laterStateCap;
                 }
             }
         }
