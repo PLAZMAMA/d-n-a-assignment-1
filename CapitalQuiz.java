@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 class CapitalQuiz {
     static final String[][] STATE_CAPITALS = {
@@ -74,6 +75,21 @@ class CapitalQuiz {
     }
 
     public static void main(String[] args) {
-        System.out.println(Arrays.deepToString(STATE_CAPITALS));
+        String formattedQuestion;
+        String answer;
+        int correctAnswers = 0;
+        Scanner input = new Scanner(System.in);
+        String [][] sortedStateCapitals = bubbleSort(STATE_CAPITALS, 1);
+
+        for (String[] stateCapital : STATE_CAPITALS) {
+            formattedQuestion = String.format("What is the capital of %s?", stateCapital[0]);
+            System.out.println(formattedQuestion);
+            answer = input.nextLine();
+            if (answer.equalsIgnoreCase(stateCapital[1])) {
+                correctAnswers += 1;
+            }
+        }
+
+        System.out.println("Toal correct answers: " + correctAnswers);
     }
 }
