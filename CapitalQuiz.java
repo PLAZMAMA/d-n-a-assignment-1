@@ -91,5 +91,7 @@ class CapitalQuiz {
         }
 
         System.out.println("Toal correct answers: " + correctAnswers);
+
+        input.close();
     }
 }
