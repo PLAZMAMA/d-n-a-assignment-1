@@ -75,6 +75,7 @@ public class CapitalSearch {
     public static void main(String[] args) {
         String tryAgainResponse;
         String stateResponse;
+        String capitilizedStateResponse;
         String formattedResult;
         boolean finished = false;
         HashMap<String, String> stateCapitals = createStateCapitals();
@@ -85,7 +86,8 @@ public class CapitalSearch {
         
         while (!finished) {
             System.out.println("Enter state to get its capital:");
-            stateResponse = input.nextLine();
+            stateResponse = input.nextLine().toLowerCase();
+            stateResponse = stateResponse.substring(0, 1).toUpperCase() + stateResponse.substring(1);
 
             if (sortedStateCapitals.containsKey(stateResponse)) {
                 formattedResult = String.format(
