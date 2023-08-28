@@ -40,7 +40,7 @@ class CapitalQuiz {
         {"Oklahoma", "Oklahoma City"},
         {"Oregon", "Salem"},
         {"Pennsylvania", "Harrisburg"},
-        {"Rhoda Island", "Providence"},
+        {"Rhode Island", "Providence"},
         {"South Carolina", "Columbia"},
         {"South Dakoda", "Pierre"},
         {"Tennessee", "Nashville"},
