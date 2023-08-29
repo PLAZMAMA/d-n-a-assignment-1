@@ -4,9 +4,15 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 public class CapitalSearch {
+    /***
+     * Creates capital state key values hashmap.
+     * @return Created hashmap with the state as key and capital as value.
+     */
     static HashMap<String, String> createStateCapitals() {
+        // Initializing hashmap.
         HashMap<String, String> stateCapitals = new HashMap<String, String>();
 
+        // Adding state capitals.
         stateCapitals.put("Alabama", "Montgomery");
         stateCapitals.put("Alaska", "Juneau");
         stateCapitals.put("Arizona", "Phoenix");
@@ -58,36 +64,55 @@ public class CapitalSearch {
         stateCapitals.put("Wisconsin", "Madison");
         stateCapitals.put("Wyoming", "Cheyenne");
 
+        // Returning generated hashmap.
         return stateCapitals;
     }
 
+    /***
+     * Prints a map in a readable format to console.
+     * @param map Map to print to console.
+     */
     static void printMap(Map<String, String> map) {
+        // Declaring variable use to store formatted string.
         String formattedKeyVal;
 
+        // Printing beggining symbol of map.
         System.out.println("{");
+        // Iterating over each element in map.
         for (Map.Entry <String, String> mapEntry: map.entrySet()) {
+            // Formatting and printing key value pair.
             formattedKeyVal = String.format("\t%s: %s,", mapEntry.getKey(), mapEntry.getValue());
             System.out.println(formattedKeyVal);
         }
+        // Printing ending symbol of map.
         System.out.println("}");
     }
 
     public static void main(String[] args) {
+        // Declating and initializing variables.
         String tryAgainResponse;
         String stateResponse;
         String formattedResult;
         boolean finished = false;
-        HashMap<String, String> stateCapitals = createStateCapitals();
+        HashMap<String, String> stateCapitals = createStateCapitals(); // Initializing map.
         Scanner input = new Scanner(System.in);
-        TreeMap<String, String> sortedStateCapitals = new TreeMap<String, String>(stateCapitals);
+        TreeMap<String, String> sortedStateCapitals = new TreeMap<String, String>(stateCapitals); // Sorting map using a TreeMap.
 
+        // Printing unsorted map.
         printMap(stateCapitals);
         
+        // Repeating until the user does not want to run the program anymore.
         while (!finished) {
+            // Printing state input prompt.
             System.out.println("Enter state to get its capital:");
+
+            // Reading user input.
             stateResponse = input.nextLine().toLowerCase();
+            // Converting it to a capitalized format.
             stateResponse = stateResponse.substring(0, 1).toUpperCase() + stateResponse.substring(1);
 
+            // Checking if state exists and printing capital.
+            // If state does not exist, the user is informed.
             if (sortedStateCapitals.containsKey(stateResponse)) {
                 formattedResult = String.format(
                     "The capital of %s is %s",
@@ -100,14 +125,14 @@ public class CapitalSearch {
                     stateResponse
                 );
             }
-
             System.out.println(formattedResult);
 
-            System.out.println("Try again? (y/n)");
-            tryAgainResponse = input.nextLine();
-            finished = tryAgainResponse.equalsIgnoreCase("n");
+            System.out.println("Try again? (y/n)"); // Asking the user if he want to run the program again.
+            tryAgainResponse = input.nextLine(); // Reading users answer.
+            finished = tryAgainResponse.equalsIgnoreCase("n"); // Converting answer to boolean used by while loop.
         }
 
+        // Closing input.
         input.close();
     }
 }
